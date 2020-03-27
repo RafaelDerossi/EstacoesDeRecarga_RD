@@ -1,0 +1,42 @@
+﻿@model EstacaoDeRecarga.Aplicacao.ViewModel.EstacaoRecargaViewModel
+
+@{
+    ViewData["Title"] = "Detalhes da Estação";
+}
+
+<h1>Detalhes da Estação</h1>
+
+<div>
+    <h4>Estação de Recarga</h4>
+    <hr />
+    <dl class="row">                
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Nome)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Nome)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Tipo)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Tipo)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Latitude)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Latitude)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Longitude)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Longitude)
+        </dd>
+    </dl>
+</div>
+<div>
+    @Html.ActionLink("Editar", "Edit", new { id = Model.Id }) |
+    <a asp-action="Index">Voltar para a lista</a>
+</div>
