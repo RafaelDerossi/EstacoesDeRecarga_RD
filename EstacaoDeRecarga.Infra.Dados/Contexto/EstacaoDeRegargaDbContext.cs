@@ -1,5 +1,6 @@
 ﻿using EstacaoDeRecarga.Dominio.Modelos;
 using EstacaoDeRecarga.Dominio.ObjetosDeValor;
+using EstacaoDeRecarga.Infra.Dados.Mapeamentos;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -25,10 +26,15 @@ namespace EstacaoDeRecarga.Infra.Dados.Contexto
             if (!optionsBuilder.IsConfigured)
                 optionsBuilder.UseSqlServer(GetConnectionString());
 
+            
             base.OnConfiguring(optionsBuilder);
         }
 
-
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.ApplyConfiguration(new MapEstacaoRecarga());
+            base.OnModelCreating(modelBuilder);
+        }
 
         private string GetConnectionString()
         {
