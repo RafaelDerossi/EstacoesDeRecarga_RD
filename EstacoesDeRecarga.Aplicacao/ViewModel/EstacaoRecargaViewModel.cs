@@ -22,11 +22,11 @@ namespace EstacaoDeRecarga.Aplicacao.ViewModel
         public string Tipo { get; set; }
 
         [Required(ErrorMessage = "O campo Latitude é obrigatório.")]
-        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:#.######}")]
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:#.#######}")]
         public decimal Latitude { get; set; }
 
         [Required(ErrorMessage = "O campo Longitude é obrigatório.")]
-        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:#.######}")]
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:#.#######}")]
         public decimal Longitude { get; set; }
     }
 }

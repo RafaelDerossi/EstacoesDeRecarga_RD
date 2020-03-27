@@ -21,8 +21,8 @@ namespace EstacaoDeRecarga.MVC.Controllers
         // GET: EstacaoRecargaMVC
         public ActionResult Index()
         {
-            var produtos = _appEstacaoRecarga.Listar();
-            return View(produtos);
+            var estacoes = _appEstacaoRecarga.Listar();
+            return View(estacoes);
         }
 
         // GET: EstacaoRecargaMVC/Details/5

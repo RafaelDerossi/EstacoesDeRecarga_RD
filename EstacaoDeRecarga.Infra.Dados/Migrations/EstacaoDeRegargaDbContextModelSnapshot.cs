@@ -27,10 +27,10 @@ namespace EstacaoDeRecarga.Infra.Dados.Migrations
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<decimal>("Latitude")
-                        .HasColumnType("decimal(14,6)");
+                        .HasColumnType("decimal(14,7)");
 
                     b.Property<decimal>("Longitude")
-                        .HasColumnType("decimal(14,6)");
+                        .HasColumnType("decimal(14,7)");
 
                     b.Property<string>("Nome")
                         .IsRequired()

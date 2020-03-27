@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace EstacaoDeRecarga.Infra.Dados.Migrations
 {
     [DbContext(typeof(EstacaoDeRegargaDbContext))]
-    [Migration("20200327005227_Inicial")]
+    [Migration("20200327155507_Inicial")]
     partial class Inicial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -29,10 +29,10 @@ namespace EstacaoDeRecarga.Infra.Dados.Migrations
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<decimal>("Latitude")
-                        .HasColumnType("decimal(14,6)");
+                        .HasColumnType("decimal(14,7)");
 
                     b.Property<decimal>("Longitude")
-                        .HasColumnType("decimal(14,6)");
+                        .HasColumnType("decimal(14,7)");
 
                     b.Property<string>("Nome")
                         .IsRequired()

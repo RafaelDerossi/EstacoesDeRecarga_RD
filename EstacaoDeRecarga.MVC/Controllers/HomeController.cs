@@ -6,21 +6,25 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using EstacaoDeRecarga.MVC.Models;
+using EstacoesDeRecarga.Aplicacao.Interfaces;
 
 namespace EstacaoDeRecarga.MVC.Controllers
 {
     public class HomeController : Controller
     {
+        private readonly IAppEstacaoRecarga _appEstacaoRecarga;
         private readonly ILogger<HomeController> _logger;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(ILogger<HomeController> logger, IAppEstacaoRecarga appEstacaoRecarga)
         {
             _logger = logger;
+            _appEstacaoRecarga = appEstacaoRecarga;
         }
 
         public IActionResult Index()
         {
-            return View();
+            var estacoes = _appEstacaoRecarga.Listar();
+            return View(estacoes);
         }
 
         public IActionResult Privacy()

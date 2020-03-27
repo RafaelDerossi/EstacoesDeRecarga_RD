@@ -1,8 +1,101 @@
-﻿@{
-    ViewData["Title"] = "Home Page";
+﻿
+@model IEnumerable<EstacaoDeRecarga.Aplicacao.ViewModel.EstacaoRecargaViewModel>
+@using System.Web;
+@{
+    ViewData["Title"] = "Home Page";    
 }
 
-    <div class="text-center">
-        <h1 class="display-4">Welcome</h1>
-        <a class="nav-link text-dark" asp-area="" asp-controller="EstacaoRecargaMVC" asp-action="Index">Ver Estações de Recarga</a>        
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-12">
+            <div class="text-center">
+                <h1 class="display-4">Estaçoes de Recarga</h1>
+            </div>
+        </div>
     </div>
+
+    <!-- Inicio do Google Maps -->
+    <div class="col-12">
+        <div class="" style="margin-top:30px; margin-bottom:30px;">
+
+            <div id="map" style="width:auto;height:650px;"></div>
+            
+            <script type="text/javascript">
+                var lat = "0";
+                var lon = "0";
+                 if (navigator.geolocation) {
+                         navigator.geolocation.getCurrentPosition(pegaCoordenadas, showError);                         
+                     }
+                     else { $("#message").html("A Geolocalização não é suportada neste navegador."); }                
+
+                function pegaCoordenadas(position) {
+                    lat = position.coords.latitude.toString();
+                    lon = position.coords.longitude.toString();
+                }
+
+                myMap();
+                function myMap() {                    
+                        var mapOptions = {                            
+                            center: new google.maps.LatLng(lat.toString(), lon.toString()),
+                            zoom: 12,
+                            mapTypeId: google.maps.MapTypeId.ROADMAP
+                        }
+                        var map = new google.maps.Map(document.getElementById("map"), mapOptions);
+                        
+                        var indexJS = 0;
+                        var data = [];
+                        @{
+                            for (int i = 0; i < Model.Count(); i++)
+                            {
+                                @:(data[indexJS] = { "nome": '@Model.ElementAtOrDefault(i).Nome', "latitude": '@Model.ElementAtOrDefault(i).Latitude.ToString().Replace(",",".")', "longitude": '@Model.ElementAtOrDefault(i).Longitude.ToString().Replace(",",".")' });
+                                @:(indexJS++);
+                            }
+                        }
+
+
+                        if ( data.length>0) {
+                            for (i = 0; i < data.length; i++)
+                            {
+                                var latlng = new google.maps.LatLng(data[i].latitude.toString(), data[i].longitude.toString()); /*new google.maps.LatLng(-22.9038308, -43.5662599);*/
+                                marker = new google.maps.Marker({
+                                    position: latlng, /*new google.maps.LatLng(data[i][1], data[i][2]),*/
+                                    title: data[i].nome.toString(), /*data[indexJS][0].toString()*/
+                                    map: map
+                                });
+                            }
+                        }
+
+                        //latlng = new google.maps.LatLng(-22.9038308, -43.5662599);
+                        //var marker = new google.maps.Marker({
+                        //    position: latlng,
+                        //    map: map,
+                        //    title: "MAPD Informática",
+                        //    draggable: true
+                        //});
+
+                }
+
+                function showError(error) {
+                    if (error.code == 1) {
+                        $("#message").html("Usuário negou a requisição para geolocalziação.");
+                    }
+                    else if (error.code == 2) {
+                        $("#message").html("Localização informada esta indisponível.");
+                    }
+                    else if (error.code == 3) {
+                        $("#message").html("A requisição para obter a localização do usuário expirou.");
+                    }
+                    else {
+                        $("#message").html("Erro desconhecido.");
+                    }
+        }
+
+            </script>
+            <!-- Precisa de uma Key do google API -->
+            <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDO5sRRnpQW6teTwWcV2bBy0l5CS8kRIgc&callback=myMap"></script>
+
+        </div>
+
+    </div>
+</div>
+

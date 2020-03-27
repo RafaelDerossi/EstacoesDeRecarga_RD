@@ -14,8 +14,8 @@ namespace EstacaoDeRecarga.Infra.Dados.Migrations
                     Id = table.Column<Guid>(nullable: false),
                     Nome = table.Column<string>(type: "varchar(300)", maxLength: 300, nullable: false),
                     Tipo = table.Column<string>(type: "varchar(100)", maxLength: 100, nullable: false),
-                    Latitude = table.Column<decimal>(type: "decimal(14,6)", nullable: false),
-                    Longitude = table.Column<decimal>(type: "decimal(14,6)", nullable: false)
+                    Latitude = table.Column<decimal>(type: "decimal(14,7)", nullable: false),
+                    Longitude = table.Column<decimal>(type: "decimal(14,7)", nullable: false)
                 },
                 constraints: table =>
                 {

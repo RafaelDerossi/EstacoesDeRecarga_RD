@@ -25,11 +25,11 @@ namespace EstacaoDeRecarga.Infra.Dados.Mapeamentos
                 .IsRequired();
 
             builder.Property(c => c.Latitude)
-               .HasColumnType("decimal(14,6)")               
+               .HasColumnType("decimal(14,7)")               
                .IsRequired();
 
             builder.Property(c => c.Longitude)
-               .HasColumnType("decimal(14,6)")
+               .HasColumnType("decimal(14,7)")
                .IsRequired();
         }
     }
